@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mx-management-db:
+    image: postgres:9.6
+    container_name: mx-management-db
+    environment:
+      POSTGRES_DB: mx-management
+      POSTGRES_USER: mx-management
+      POSTGRES_PASSWORD: mx-management
+    ports:
+      - "5432:5432"
