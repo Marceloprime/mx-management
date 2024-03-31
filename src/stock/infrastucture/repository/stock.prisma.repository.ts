@@ -1,6 +1,6 @@
 import { BaseRepository } from '@app/common/repository';
 import { StockRepository } from '../../domain/repository';
-import { Stock } from '../../domain/entities/stock.entity';
+import { Stock, StockDto } from '../../domain/entities/stock.entity';
 
 export class StockPrismaRepository
   extends BaseRepository
@@ -15,17 +15,17 @@ export class StockPrismaRepository
       data,
     });
   }
-  async get() {
+  async getAll() {
     return this.prisma.stock.findMany();
   }
-  async getById(id) {
+  async getById(id: string) {
     return this.prisma.stock.findUnique({
       where: {
         id,
       },
     });
   }
-  async update(id, data) {
+  async update(id: string, data: StockDto) {
     return this.prisma.stock.update({
       where: {
         id,
@@ -33,7 +33,7 @@ export class StockPrismaRepository
       data,
     });
   }
-  async delete(id) {
+  async delete(id: string) {
     return this.prisma.stock.delete({
       where: {
         id,

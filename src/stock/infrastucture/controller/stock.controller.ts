@@ -8,13 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { StockService } from '../../services/stock.service';
+import { StockCreateDto, StockDto } from '../../domain/entities/stock.entity';
 
 @Controller('stock')
 export class StockController {
   constructor(private readonly stockService: StockService) {}
 
   @Post()
-  create(@Body() createStockDto: {}) {
+  create(@Body() createStockDto: StockCreateDto) {
+    console.log('createStockDto', createStockDto);
     return this.stockService.create(createStockDto);
   }
 
@@ -25,16 +27,16 @@ export class StockController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stockService.findOne(+id);
+    return this.stockService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStockDto: {}) {
-    return this.stockService.update(+id, updateStockDto);
+  @Patch('')
+  update(@Body() updateStockDto: StockDto) {
+    return this.stockService.update(updateStockDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stockService.remove(+id);
+    return this.stockService.remove(id);
   }
 }

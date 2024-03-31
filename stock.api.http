@@ -1,0 +1,28 @@
+### Create
+POST http://localhost:3000/stock
+content-type: application/json
+
+{
+    "name": "Apple",
+    "price": 100,
+    "quantity": 10,
+    "supplierId": "qqqqqqqq-qqqq-qqqq-qqqq-qqqqqqqqqqqq"
+}
+
+### Get all
+GET http://localhost:3000/stock
+
+### Get by id
+GET http://localhost:3000/stock/1
+
+### Update
+PUT http://localhost:3000/stock/1
+
+{
+    "name": "Apple",
+    "price": 200,
+    "quantity": 20
+}
+
+### Delete
+DELETE http://localhost:3000/stock/1

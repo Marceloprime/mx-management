@@ -11,23 +11,24 @@ export class StockService {
   constructor(private readonly stockRepository: StockRepository) {}
 
   async create(props: StockCreateDto) {
-    const stock = new Stock(props);
+    console.log('props', props);
+    const stock = new Stock({ create: props });
     return this.stockRepository.create(stock);
   }
 
-  findAll() {
-    return `This action returns all stock`;
+  async findAll() {
+    return this.stockRepository.getAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} stock`;
+  async findOne(id: string) {
+    return this.stockRepository.getById(id);
   }
 
-  update(id: number) {
-    return `This action updates a #${id} stock`;
+  async update(props: StockDto) {
+    return this.stockRepository.update(props.id, props);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} stock`;
+  async remove(id: string) {
+    return this.stockRepository.delete(id);
   }
 }

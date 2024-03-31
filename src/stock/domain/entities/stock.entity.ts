@@ -7,7 +7,7 @@ export class Stock {
   quantity: number;
   supplierId: string;
 
-  constructor(create?: StockCreateDto, load?: StockDto) {
+  constructor({ create, load }: { create?: StockCreateDto; load?: StockDto }) {
     if (create) {
       this.create(create);
     } else if (load) {
@@ -16,8 +16,10 @@ export class Stock {
   }
 
   create(stock: StockCreateDto) {
+    console.log('stock', stock);
     this.id = uuid();
     this.name = stock.name;
+    this.price = stock.price;
     this.quantity = stock.quantity;
     this.supplierId = stock.supplierId;
   }
@@ -25,6 +27,7 @@ export class Stock {
   load(stock: StockDto) {
     this.id = stock.id;
     this.name = stock.name;
+    this.price = stock.price;
     this.quantity = stock.quantity;
     this.supplierId = stock.supplierId;
   }
@@ -41,6 +44,7 @@ export class Stock {
     return {
       id: this.id,
       name: this.name,
+      price: this.price,
       quantity: this.quantity,
       supplierId: this.supplierId,
     };
@@ -50,6 +54,7 @@ export class Stock {
 export type StockDto = {
   id: string;
   name: string;
+  price: number;
   quantity: number;
   supplierId: string;
 };
@@ -58,4 +63,5 @@ export type StockCreateDto = {
   name: string;
   quantity: number;
   supplierId: string;
+  price: number;
 };
